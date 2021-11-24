@@ -13,15 +13,15 @@ const PostSchema = new Schema({
   imagePath: {
     type: String,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   creator: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
     autopopulate: { maxDepth: 2 }
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
   },
   comments: [{
     type: Schema.Types.ObjectId,
@@ -38,6 +38,10 @@ const PostSchema = new Schema({
     ref: 'User',
     autopopulate: { maxDepth: 2 }
   }],
+  isPublic: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 PostSchema.plugin(require('mongoose-autopopulate'));
