@@ -4,4 +4,20 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    if (!user)
+        ul 
+          a(href="/login") 
+            li Log in ✅
+          a(href="/signup")
+            li Sign up🙋🏻
+    else 
+      ul
+        li
+          a(href="/dashboard") Dashboard 🖼
+        li
+          a(href="/posts/create-post") Create Post 📝
+        li 
+          a(href="/posts") Posts ✏️
+        a(href="/logout") 
+          li Log out ❌
     block content
