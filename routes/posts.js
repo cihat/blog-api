@@ -7,11 +7,11 @@ const User = require('../models/User');
 const { forwardAuthenticated, ensureAuthenticated } = require('../helpers/password/auth');
 
 //! Get all posts
-router.get('/', ensureAuthenticated, (req, res) => {
+router.get('/', (req, res) => {
   Posts.find({ /* isPublic: true */ })
     .sort({ date: -1 })
     .then(posts => {
-      res.send({ posts });
+      res.send({ ...posts });
     });
 });
 
