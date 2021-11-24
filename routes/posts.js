@@ -77,4 +77,28 @@ router.post("/:id/comment", (req, res) => {
   })
 })
 
+//! Post a like
+router.post("/:id/like", (req, res) => {
+  Posts.findById(req.params.id, (err, post) => {
+    if (err) {
+      res.send(err);
+    }
+    post.likes.push(req.user.id);
+    post.save();
+    res.send(post);
+  })
+})
+
+//! Post a dislike
+router.post("/:id/dislike", (req, res) => {
+  Posts.findById(req.params.id, (err, post) => {
+    if (err) {
+      res.send(err);
+    }
+    post.dislikes.push(req.user.id);
+    post.save();
+    res.send(post);
+  })
+})
+
 module.exports = router;
